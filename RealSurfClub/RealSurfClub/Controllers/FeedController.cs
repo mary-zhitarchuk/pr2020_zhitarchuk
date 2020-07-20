@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using RealSurfClub.DAL;
+using RealSurfClub.Helpers;
+using RealSurfClub.Models.DBModels;
+
+
+namespace RealSurfClub.Controllers
+{
+    public class FeedController : Controller
+    {
+        private SurfDbContext dbContext = new SurfDbContext(); 
+
+        // GET: Feed
+        public ActionResult Index()
+        {
+            var posts = dbContext.Posts.OrderByDescending(c => c.Id).ToList();
+            ViewBag.Posts = posts;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddPost(Post model, HttpPostedFileBase imageData)
+        {
+
+            if(imageData == null && model.Text == null)
+            {
+                ModelState.AddModelError(string.Empty, "Не загружено ни изображение, ни текст");
+                var postsN = dbContext.Posts.OrderByDescending(c=>c.Id).ToList();
+                ViewBag.Posts = postsN;
+                return View("Index", model);
+            }
+
+            model.PubishDate = DateTime.Now;
+
+            if (imageData != null)
+            {
+                model.Photo = ImageSaveHelper.SaveImage(imageData);
+            }
+
+            var userId = Convert.ToInt32(Session["UserId"]);
+            var userInDb = dbContext.Users.FirstOrDefault(c => c.Id == userId);
+
+            model.Author = userInDb;
+
+            dbContext.Posts.Add(model);
+
+            dbContext.SaveChanges();
+
+            var posts = dbContext.Posts.OrderByDescending(c => c.Id).ToList();
+            ViewBag.Posts = posts;
+            return View("Index");
+        }
+
+    }
+}

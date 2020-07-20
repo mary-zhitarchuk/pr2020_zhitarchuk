@@ -1,0 +1,45 @@
+﻿@model RealSurfClub.Models.ViewModels.LoginViewModel
+@Styles.Render("~/Content/css")
+
+@{
+    ViewBag.Title = "Клуб любителей серфинга - авторизация";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <form>
+
+        <div class="panel panel-info center-block tiny-panel" >
+            <div class="panel-heading" style="background-color: #DCE4E9; color: #6C757D; font-size: 14px;">
+                Авторизация
+            </div>
+            <div class="panel-body " style="color: #6C757D;">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nickname)
+                    @Html.EditorFor(model => model.Nickname, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group" style="color: #6C757D;">
+                    @Html.LabelFor(model => model.Password)
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type="Password" } })
+                </div>
+
+                <div class="form-group remember">
+                    @Html.CheckBoxFor(model => model.RememberMe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.RememberMe)
+                </div>
+
+                <div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn-in">Войти</button>
+            </div>
+        </div>
+    </form>
+    <div class="center-block" style=" text-align: center; color: #6C757D;">
+        Нет аккаунта?
+        <button type="button" class="btn-in">@Html.ActionLink("Зарегистрироваться", "Index", "Register")</button>
+    </div>
+
+}
