@@ -53,7 +53,7 @@ namespace RealSurfClub.Controllers
             Session.Abandon();
             Request.Cookies.Clear();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Feed");
 
 
         }
