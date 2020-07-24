@@ -22,7 +22,7 @@
                     <br />
                     @Html.TextAreaFor(model => model.Text, new { htmlAttributes = new { @class = "form-control textarea-form" } })
                     <br />
-                    @Html.ValidationMessageFor(model => model.Text)
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.Text)</div>
                     <br/>
                     @Html.LabelFor(model => model.Photo)
                     <br />

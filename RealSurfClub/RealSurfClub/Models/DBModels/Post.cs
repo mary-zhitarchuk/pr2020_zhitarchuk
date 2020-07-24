@@ -14,7 +14,7 @@ namespace RealSurfClub.Models.DBModels
         /// <summary>
         /// Текст записи
         /// </summary>
-        [Display(Name = "Введите текст"), MaxLength(4095, ErrorMessage ="Максимально допустимое число символов 4095")]
+        [Display(Name = "Введите текст"), MaxLength(4095, ErrorMessage ="Превышено максимально допустимое число символов 4095")]
         public string Text { get; set; }
 
 
