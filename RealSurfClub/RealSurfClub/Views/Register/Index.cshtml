@@ -15,53 +15,61 @@
         {
 
             <form>
+                <div>
+                    <div style=" float: right; margin-right: 66px; margin-top: 50px;">
+                        <img src="~/Content/Images/standart.jpg" style=" width: 285px; border-radius: 50%;"/>
+                    </div>
+        
+                    <div>
+                        <div class="form-group">
 
-                <div class="form-group">
+                            @Html.LabelFor(model => model.Nickname)<br />
+                            @Html.EditorFor(model => model.Nickname, new { htmlAttributes = new { @class = "form-control min-form", @title = "От 3 до 20 символов. Латиница, кириллица, цифры и подчёркивания" } })
+                            <div class="text-danger">@Html.ValidationMessageFor(model => model.Nickname)</div>
 
-                    @Html.LabelFor(model => model.Nickname)<br />
-                    @Html.EditorFor(model => model.Nickname, new { htmlAttributes = new { @class = "form-control min-form", @title = "От 3 до 20 символов. Латиница, кириллица, цифры и подчёркивания" } })
-                    <div class="text-danger">@Html.ValidationMessageFor(model => model.Nickname)</div>
+                        </div>
 
-                </div>
+                        <div class="form-group">
 
-                <div class="form-group">
+                            @Html.LabelFor(model => model.Email)<br />
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control min-form", @placeholder = "example@ex.ru" } })
+                            <div class="text-danger">@Html.ValidationMessageFor(model => model.Email)</div>
 
-                    @Html.LabelFor(model => model.Email)<br />
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control min-form", @title = "Пример example@ex.ru" } })
-                    <div class="text-danger">@Html.ValidationMessageFor(model => model.Email)</div>
+                        </div>
 
-                </div>
+                        <div class="form-group">
 
-                <div class="form-group">
+                            @Html.LabelFor(model => model.Password)<br />
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control min-form", @type = "Password", @title = "От 6 до 20 символов. Латиница, цифры и подчёркивания" } })
+                            <div class="text-danger">@Html.ValidationMessageFor(model => model.Password)</div>
 
-                    @Html.LabelFor(model => model.Password)<br />
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control min-form", @type = "Password", @title = "От 6 до 20 символов. Латиница, цифры и подчёркивания" } })
-                    <div class="text-danger">@Html.ValidationMessageFor(model => model.Password)</div>
+                        </div>
 
-                </div>
+                        <div class="form-group">
 
-                <div class="form-group">
+                            @Html.LabelFor(model => model.PasswordConfirm)<br />
+                            @Html.EditorFor(model => model.PasswordConfirm, new { htmlAttributes = new { @class = "form-control min-form", @type = "Password", @title = "От 6 до 20 символов. Латиница, цифры и подчёркивания" } })
+                            <div class="text-danger">@Html.ValidationMessageFor(model => model.PasswordConfirm)</div>
 
-                    @Html.LabelFor(model => model.PasswordConfirm)<br />
-                    @Html.EditorFor(model => model.PasswordConfirm, new { htmlAttributes = new { @class = "form-control min-form", @type = "Password", @title = "От 6 до 20 символов. Латиница, цифры и подчёркивания" } })
-                    <div class="text-danger">@Html.ValidationMessageFor(model => model.PasswordConfirm)</div>
-
-                </div>
+                        </div>
 
 
-                <div class="form-group">
+                        <div class="form-group">
 
-                    @Html.LabelFor(model => model.LastName)<br />
-                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control min-form" } })
+                            @Html.LabelFor(model => model.LastName)<br />
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control min-form" } })
 
 
-                </div>
+                        </div>
 
-                <div class="form-group">
+                        <div class="form-group">
 
-                    @Html.LabelFor(model => model.Name)<br />
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control min-form" } })
+                            @Html.LabelFor(model => model.Name)<br />
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control min-form" } })
 
+
+                        </div>
+                    </div>
 
                 </div>
                 <div class="form-group">
@@ -111,11 +119,13 @@
                     <button type="submit" class="btn-reg" style="float: right; width: 194px; height: 35px">Зарегистрироваться</button>
 
                 </div>
+                
 
             </form>
 
         }
 
+      
 
     </div>
 

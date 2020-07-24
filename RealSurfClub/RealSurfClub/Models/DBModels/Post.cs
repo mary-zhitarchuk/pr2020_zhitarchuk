@@ -11,12 +11,10 @@ namespace RealSurfClub.Models.DBModels
         [Key]
         public int Id { get; set; }
 
-
-
         /// <summary>
         /// Текст записи
         /// </summary>
-        [Display(Name = "Введите текст"), MaxLength(4095)]
+        [Display(Name = "Введите текст"), MaxLength(4095, ErrorMessage ="Максимально допустимое число символов 4095")]
         public string Text { get; set; }
 
 

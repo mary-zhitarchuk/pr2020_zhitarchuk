@@ -27,6 +27,14 @@ namespace RealSurfClub.Controllers
         public ActionResult AddPost(Post model, HttpPostedFileBase imageData)
         {
 
+            if(!ModelState.IsValid)
+            {
+                var postsN = dbContext.Posts.OrderByDescending(c => c.Id).ToList();
+                ViewBag.Posts = postsN;
+
+                return View("Index", model);
+            }
+
             if(imageData == null && model.Text == null)
             {
                 ModelState.AddModelError(string.Empty, "Не загружено ни изображение, ни текст");
@@ -42,8 +50,18 @@ namespace RealSurfClub.Controllers
                 model.Photo = ImageSaveHelper.SaveImage(imageData);
             }
 
+           
+
             var userId = Convert.ToInt32(Session["UserId"]);
             var userInDb = dbContext.Users.FirstOrDefault(c => c.Id == userId);
+
+            if (userInDb == null)
+            {
+                //пользователь не авторизован
+                TempData["errorMessage"] = "Время сессии истекло. Авторизуйтесь повторно.";
+     
+                return RedirectToAction("Index", "Home");
+            }
 
             model.Author = userInDb;
 
@@ -53,6 +71,9 @@ namespace RealSurfClub.Controllers
 
             var posts = dbContext.Posts.OrderByDescending(c => c.Id).ToList();
             ViewBag.Posts = posts;
+
+            ModelState.Clear();
+
             return View("Index");
         }
 

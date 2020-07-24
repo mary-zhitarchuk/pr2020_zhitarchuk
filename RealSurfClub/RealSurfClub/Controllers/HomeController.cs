@@ -16,6 +16,10 @@ namespace RealSurfClub.Controllers
 
         public ActionResult Index()
         {
+            if (TempData["errorMessage"] != null)
+            {
+                ViewBag.Message = TempData["errorMessage"].ToString();
+            }
             return View();
         }
 
@@ -28,7 +32,7 @@ namespace RealSurfClub.Controllers
                     c=> c.Nickname == model.Nickname &&
                     c.Password == model.Password
                     );
-                if(useInDb!= null) 
+                if(useInDb != null) 
                 {
                     FormsAuthentication.SetAuthCookie(useInDb.Nickname, model.RememberMe); // авторизация через куки
                     Session["UserId"] = useInDb.Id.ToString();
