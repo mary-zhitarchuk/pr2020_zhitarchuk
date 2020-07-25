@@ -24,7 +24,8 @@ namespace RealSurfClub.Models.DBModels
         /// </summary>
         [Display(Name = "Почта*")]
         [Required(ErrorMessage = "Указание электронной почты обязательно")]
-        [EmailAddress(ErrorMessage ="Неверно указан электронный адрес")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Неверно указан электронный адрес")]
+        ///[EmailAddress(ErrorMessage ="Неверно указан электронный адрес")]
         public string Email { get; set; }
 
         /// <summary>

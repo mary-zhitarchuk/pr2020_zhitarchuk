@@ -47,6 +47,7 @@ namespace RealSurfClub.Controllers
                     return View("Index", model);
                 }
 
+
                 if (imageData != null)
                 {
                     model.Photo = ImageSaveHelper.SaveImage(imageData);
