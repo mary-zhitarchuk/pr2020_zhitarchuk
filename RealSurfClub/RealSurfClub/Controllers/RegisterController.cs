@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
-
 namespace RealSurfClub.Controllers
 {
     public class RegisterController : Controller
@@ -50,6 +49,12 @@ namespace RealSurfClub.Controllers
 
                 if (imageData != null)
                 {
+                    if (!ImageFormatHelper.IsJpg(imageData))
+                    {
+                        ModelState.AddModelError(string.Empty, "Загруженное изображение не картинка формата JPG");
+                        return View("Index", model);
+                    }
+
                     model.Photo = ImageSaveHelper.SaveImage(imageData);
                 }
 
@@ -65,5 +70,6 @@ namespace RealSurfClub.Controllers
             }
             return View("Index", model);
         }
+
     }
 }

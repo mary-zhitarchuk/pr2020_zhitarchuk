@@ -47,8 +47,18 @@ namespace RealSurfClub.Controllers
 
             if (imageData != null)
             {
+                if (!ImageFormatHelper.IsJpg(imageData))
+                {
+                    ModelState.AddModelError(string.Empty, "Загруженное изображение не картинка формата JPG");
+                    var postsdb = dbContext.Posts.OrderByDescending(c => c.Id).ToList();
+                    ViewBag.Posts = postsdb;
+                    return View("Index", model);
+                }
+
                 model.Photo = ImageSaveHelper.SaveImage(imageData);
             }
+
+           
 
            
 

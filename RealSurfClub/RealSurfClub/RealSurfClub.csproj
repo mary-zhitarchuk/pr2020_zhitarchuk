@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Helpers\ImageFormatHelper.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="DAL\SerfDbContext.cs" />
     <Compile Include="DAL\SurfDbInitializer.cs" />
